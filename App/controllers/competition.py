@@ -69,3 +69,52 @@ def display_competition_results(name):
             count += 1
         
         return leaderboard
+
+
+
+
+###############OBSERVER DESIGN PATTERN EXAMPLE##########
+# from flask_sqlalchemy import SQLAlchemy
+# from app import app
+# db = SQLAlchemy(app)
+
+# #Observer 
+
+# class Publisher(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(50), nullable=False)
+#     subscribers = db.relationship('Subscriber', backref='publisher', lazy=True)
+
+#     def __init__(self, name):
+#       self.name = name
+
+#     def subscribe(self, subscriber):
+#       self.subscribers.append(subscriber)
+
+#     def notify_subscribers(self, message):
+#         for subscriber in self.subscribers:
+#             subscriber.update(message)
+
+# class Subscriber(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(50), nullable=False)
+#     publisher_id = db.Column(db.Integer, db.ForeignKey('publisher.id'), nullable=False)
+#     state = db.relationship('State', backref="subscriber", lazy=True)
+
+#     def __init__(self, name, publisher_id):
+#       self.publisher_id =  publisher_id
+#       self.name = name
+  
+#     def update(self, message):
+#       print(f'{self.name}: received {message}')
+#       self.state.append(State(message))
+#       db.session.add(self)
+#       db.session.commit()
+
+# class State(db.Model):
+#   id = db.Column(db.Integer, primary_key=True)
+#   message = db.Column(db.String(50), nullable=False)
+#   subscriber_id = db.Column(db.Integer, db.ForeignKey('subscriber.id'), nullable=False)
+
+#   def __init__(self, message):
+#     self.message = message
