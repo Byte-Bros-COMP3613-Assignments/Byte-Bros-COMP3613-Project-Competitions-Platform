@@ -84,10 +84,6 @@ def display_notifications(username):
 
 
 
-## This is where we delve into ranking vs rating. We should replace rating with 
-## a total score then have ranking just be like first, second, third like a podium placement. 
-##Then store these as prev and curr rank for simplicity. Will start on this tomorrow 
-
 def update_rankings():
     students = get_all_students()
     
