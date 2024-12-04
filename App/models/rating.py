@@ -22,4 +22,3 @@ class Rating(db.Model):
     def __init__(self, rating_score, student_id):
         self.rating_score = rating_score
         self.student_id = student_id
-  
