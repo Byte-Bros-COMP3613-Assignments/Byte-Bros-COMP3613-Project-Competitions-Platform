@@ -8,7 +8,7 @@ from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import *
-
+from App.controllers.rating import *
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -75,7 +75,10 @@ def initialize():
         #db.session.commit()
     
     competitions_file.close()
-
+    calculate_rating(1)
+    calculate_rating(2)
+    calculate_rating(3)
+    
     """
     stud1 = create_student('stud1', 'stud1pass')
     stud2 = create_student('stud2', 'stud2pass')
