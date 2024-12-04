@@ -1,5 +1,6 @@
 from App.database import db
-from App.models import Moderator, Competition, Team, CompetitionTeam
+from App.models import Moderator, Competition, Team, CompetitionTeam, Rating
+from App.controllers.rating import *
 
 def create_moderator(username, password):
     mod = get_moderator_by_username(username)
@@ -74,6 +75,9 @@ def add_results(mod_name, comp_name, team_name, score):
     mod = Moderator.query.filter_by(username=mod_name).first()
     comp = Competition.query.filter_by(name=comp_name).first()
     teams = Team.query.filter_by(name=team_name).all()
+
+    ###Call to Update the Rating Score after observing new Result 
+    update_all_rating()
 
     if not mod:
         print(f'{mod_name} was not found!')

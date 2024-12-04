@@ -65,7 +65,7 @@ def calculate_rating(user_id):
                 max_score_current_comp = current_comp.max_score
                 level_of_current_comp = current_comp.level
                 max_lvl = 10
-                weighted_score = ( (my_score / max_score_current_comp) * (level_of_current_comp/max_lvl) * 10)
+                weighted_score = ( (my_score / max_score_current_comp) * (level_of_current_comp/max_lvl) * 100)
                 Sum_of_weighted_scores = Sum_of_weighted_scores + weighted_score
 
     num_of_all_competitions = Competition.query.count() + 1
@@ -82,8 +82,13 @@ def calculate_rating(user_id):
     create_rating(rating,user_id)
 
     student.rating_score = rating
-    #print (student.rating_score, number_of_participated_in_competitions , num_of_all_competitions )
+    #print (student.username, student.rating_score, number_of_participated_in_competitions , num_of_all_competitions )
 
+
+#subscriber list is all students
+def update_all_rating():
+    for student in Student.query.all():
+        calculate_rating(student.id)
 
 
 #######LOGIC#######
