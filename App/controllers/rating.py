@@ -21,8 +21,13 @@ def create_rating (rating_score, student_id):
 
 def print_my_ratings(user_id):
     user_ratings = Rating.query.filter_by(student_id = user_id).all()
+
+    unique = -999
+
     for rating in user_ratings:
-        print(f"Rating ID: {rating.id}, Score: {rating.rating_score}, StudentID: {rating.student_id}")
+        if (rating.rating_score != unique):
+            print(f"Rating ID: {rating.id}, Score: {rating.rating_score}, StudentID: {rating.student_id}")
+            unique = rating.rating_score
 
 
 def calculate_rating(user_id):
