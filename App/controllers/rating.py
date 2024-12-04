@@ -109,14 +109,3 @@ def calculate_rating(user_id):
 #   rating = participation * avg_weighted_score
 #   find student from student_id
 #   update student rating_score 
-
-
-
-
-
-
-
-
-
-
-
