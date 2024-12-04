@@ -235,6 +235,17 @@ def list_moderators_command(format):
     else:
         print(get_all_moderators_json())
 
+@mod_cli.command("history", help="List the rating history of a given student.")
+@click.argument("stud_id", default=1 )
+def display_student_history_command(stud_id):
+    print("--------------------------------------------------------------------")
+    print("The Ratings stored for the student with student ID:", end =" ")
+    print (stud_id, end =" ")
+    print("are:")
+    print("--------------------------------------------------------------------")
+    print_my_ratings(stud_id)
+    print("--------------------------------------------------------------------")
+
 app.cli.add_command(mod_cli)
 
 
