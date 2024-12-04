@@ -75,10 +75,11 @@ def initialize():
         #db.session.commit()
     
     competitions_file.close()
-    calculate_rating(1)
-    calculate_rating(2)
-    calculate_rating(3)
     
+    #calculate_rating(1)
+    #calculate_rating(2)
+    #calculate_rating(3)
+
     """
     stud1 = create_student('stud1', 'stud1pass')
     stud2 = create_student('stud2', 'stud2pass')

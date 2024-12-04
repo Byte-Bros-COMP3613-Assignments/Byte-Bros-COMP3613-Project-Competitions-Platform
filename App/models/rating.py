@@ -17,9 +17,9 @@ class Rating(db.Model):
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False) # Stores User.id for a Student.
     #think of competition_team as a row in a results table 
     #we want rank to update for each result we add and we want to keep every entry so we have a history
-    competition_team_id = db.Column(db.Integer, db.ForeignKey('competition_team.id'), nullable=False)
+    #competition_team_id = db.Column(db.Integer, db.ForeignKey('competition_team.id'), nullable=False)
 
-    def __init__(self, rating_score, student_id, competition_team_id):
+    def __init__(self, rating_score, student_id):
         self.rating_score = rating_score
         self.student_id = student_id
-        self.competition_team_id = competition_team_id
+  

@@ -12,6 +12,12 @@ from App.models import *
 #Avg Weighted score = ( Sum of all weighted scores ) / (number of competitions participated in)
 
 
+def create_rating (rating_score, student_id):
+    new_rating_model = Rating(rating_score=rating_score,student_id=student_id)
+    db.session.add(new_rating_model)
+    db.session.commit()
+    print ("new rating made!")
+
 
 def calculate_rating(user_id):
     weighted_score = 0
@@ -48,7 +54,8 @@ def calculate_rating(user_id):
                 #print(competition_team.team_id)
                 #myteamz= Team.query.filter_by(id = team_id).first()
                 #print(myteamz.name)
-                
+                my_last_competition_team = competition_team.id
+
                 max_score_current_comp = current_comp.max_score
                 level_of_current_comp = current_comp.level
                 max_lvl = 10
@@ -62,8 +69,12 @@ def calculate_rating(user_id):
         participation = 0
     elif number_of_participated_in_competitions != 0:     
         avg_weighted_score = Sum_of_weighted_scores / number_of_participated_in_competitions
-        participation  = (number_of_participated_in_competitions / num_of_all_competitions) * 8       
+        participation  = (number_of_participated_in_competitions / num_of_all_competitions) * 8  
+
     rating = participation * avg_weighted_score
+
+    create_rating(rating,user_id)
+
     student.rating_score = rating
     #print (student.rating_score, number_of_participated_in_competitions , num_of_all_competitions )
 
