@@ -19,6 +19,12 @@ def create_rating (rating_score, student_id):
     print ("new rating made!")
 
 
+def print_my_ratings(user_id):
+    user_ratings = Rating.query.filter_by(student_id = user_id).all()
+    for rating in user_ratings:
+        print(f"Rating ID: {rating.id}, Score: {rating.rating_score}, StudentID: {rating.student_id}")
+
+
 def calculate_rating(user_id):
     weighted_score = 0
     Sum_of_weighted_scores = 0
@@ -54,8 +60,8 @@ def calculate_rating(user_id):
                 #print(competition_team.team_id)
                 #myteamz= Team.query.filter_by(id = team_id).first()
                 #print(myteamz.name)
-                my_last_competition_team = competition_team.id
 
+                my_last_competition_team = competition_team.id
                 max_score_current_comp = current_comp.max_score
                 level_of_current_comp = current_comp.level
                 max_lvl = 10
