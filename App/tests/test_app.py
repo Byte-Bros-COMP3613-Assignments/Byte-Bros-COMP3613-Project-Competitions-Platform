@@ -157,6 +157,8 @@ class UnitTests(unittest.TestCase):
     
     # Rating Unit Tests:
     def test_unit_create_rating(self):
+        db.drop_all
+        db.create_all
         create_rating(90, 1)
         rating = Rating.query.filter_by(student_id=1).first()
         assert rating is not None
@@ -164,6 +166,8 @@ class UnitTests(unittest.TestCase):
         assert rating.student_id == 1
     
     def test_unit_print_my_ratings(self):
+        db.drop_all
+        db.create_all
         create_rating(90, 1)
         create_rating(75, 1)
         
@@ -175,7 +179,31 @@ class UnitTests(unittest.TestCase):
         assert "Score: 90" in output
         assert "Score: 75" in output
       
-      # To Add: def test_unit_calculate_rating(self):
+    # To Fix:
+    # def test_unit_calculate_rating(self):
+    #     db.drop_all
+    #     db.create_all
+    #     student1 = create_student("john", "johnpass")
+    #     moderator1 = create_moderator("jane", "janepass")
+
+    #     team1 = create_team("team1", student1)
+    #     team2 = create_team("team2", student1)
+
+    #     competition1 = create_competition("jane", "competition1", datetime.now(), "St. Augustine", 5, 100)
+    #     competition2 = create_competition("jane", "competition2", datetime.now(), "St. Augustine", 10, 200)
+        
+    #     competition_team_1 = CompetitionTeam(1, 1)
+    #     competition_team_2 = CompetitionTeam(2, 2)
+
+    #     competition_team_1.update_points(50)
+    #     competition_team_2.update_points(100)
+
+    #     # Call the function
+    #     calculated_rating = calculate_rating(student1.id)
+
+    #     # Assert the calculated rating
+    #     expected_rating = (2/3) * ((50/100 * 5/10 + 100/200 * 10/10) / 2)
+    #     assert calculated_rating == expected_rating
 
 #     """
 #     #Ranking Unit Tests
