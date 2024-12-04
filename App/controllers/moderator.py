@@ -108,6 +108,7 @@ def add_results(mod_name, comp_name, team_name, score):
 
 
 def update_ratings(mod_name, comp_name):
+    from App.controllers import calculate_rating
     mod = Moderator.query.filter_by(username=mod_name).first()
     comp = Competition.query.filter_by(name=comp_name).first()
 
@@ -133,7 +134,8 @@ def update_ratings(mod_name, comp_name):
             team = Team.query.filter_by(id=comp_team.team_id).first()
 
             for stud in team.students:
-                stud.rating_score = (stud.rating_score*stud.comp_count + comp_team.rating_score)/(stud.comp_count+1)
+                calculate_rating(stud.id)
+                #stud.rating_score = (stud.rating_score*stud.comp_count + comp_team.rating_score)/(stud.comp_count+1)
                 stud.comp_count += 1
                 try:
                     db.session.add(stud)
